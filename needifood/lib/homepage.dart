@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:needifood/burgers.dart';
 import 'package:needifood/cart.dart';
-import 'package:needifood/detalhebanner.dart';
+import 'detalhebanner.dart';
 import 'package:needifood/drinks.dart';
 import 'package:needifood/pizza.dart';
 import 'favoritos.dart';
@@ -21,42 +21,22 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: Column(
         children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                height: 80,
-                width: 300,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage("images/burger1.png"),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Center(
-            child: Container(
-              margin: EdgeInsets.only(top: 10),
-              width: 500,
-              height: 70,
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: "Pesquisar alimento",
-                  suffixIcon: Icon(Icons.search),
-                  hintStyle: TextStyle(
-                    fontSize: 17,
-                    color: Colors.grey,
-                  ),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12)),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
-                  ),
+          Card(
+            margin: EdgeInsets.only(top: 20, left: 10, right: 10),
+            child: TextField(
+              textAlign: TextAlign.right,
+              decoration: InputDecoration(
+                hintText: "Pesquisar alimento",
+                prefixIcon: Image.asset('images/logo2.png'),
+                suffixIcon: Icon(Icons.search),
+                hintStyle: TextStyle(
+                  fontSize: 17,
+                  color: Colors.grey,
                 ),
               ),
             ),
           ),
+          SizedBox(height: 25),
           GestureDetector(
             onTap: () {
               Navigator.push(
@@ -65,9 +45,12 @@ class _HomePageState extends State<HomePage> {
               );
             },
             child: Container(
+              width: 550,
+              height: 180,
               child: Image.asset('images/banner1.png'),
             ),
           ),
+          SizedBox(height: 20),
           Container(
               margin: EdgeInsets.only(left: 10),
               child: Align(
@@ -156,7 +139,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Container(
                   width: 150,
-                  height: 210,
+                  height: 200,
                   margin: EdgeInsets.all(10),
                   child: Card(
                     child: Column(
@@ -228,6 +211,16 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
+          ),
+          Container(
+            width: 300,
+            height: 150,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Image.asset('images/bg2.png'),
+              ],
+            ),
           )
         ],
       ),
@@ -241,14 +234,12 @@ class _HomePageState extends State<HomePage> {
               context,
               MaterialPageRoute(builder: (context) => HomePage()),
             );
-          }
-          else if (index == 1) {
+          } else if (index == 1) {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => FavoritosPage()),
             );
-          }
-          else if (index == 2) {
+          } else if (index == 2) {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => CartPage()),
