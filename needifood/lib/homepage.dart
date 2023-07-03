@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:needifood/burgers.dart';
+import 'package:needifood/cart.dart';
 import 'package:needifood/detalhebanner.dart';
 import 'package:needifood/drinks.dart';
 import 'package:needifood/pizza.dart';
+import 'favoritos.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -154,8 +163,10 @@ class HomePage extends StatelessWidget {
                       children: [
                         Image.asset('images/beefb.png'),
                         ListTile(
-                          title: Text('Beef Burger', textAlign: TextAlign.center),
-                          subtitle: Text('Mcdi\n\nRp. 20.000', textAlign: TextAlign.center),
+                          title:
+                              Text('Beef Burger', textAlign: TextAlign.center),
+                          subtitle: Text('Mcdi\n\nRp. 20.000',
+                              textAlign: TextAlign.center),
                         ),
                       ],
                     ),
@@ -170,8 +181,10 @@ class HomePage extends StatelessWidget {
                       children: [
                         Image.asset('images/pizz.png'),
                         ListTile(
-                          title: Text('Pizza Fruit', textAlign: TextAlign.center),
-                          subtitle: Text('Pija hut\n\nRp. 40.000', textAlign: TextAlign.center),
+                          title:
+                              Text('Pizza Fruit', textAlign: TextAlign.center),
+                          subtitle: Text('Pija hut\n\nRp. 40.000',
+                              textAlign: TextAlign.center),
                         ),
                       ],
                     ),
@@ -186,8 +199,10 @@ class HomePage extends StatelessWidget {
                       children: [
                         Image.asset('images/beefb.png'),
                         ListTile(
-                          title: Text('Beef Burger', textAlign: TextAlign.center),
-                          subtitle: Text('Mcdi\n\nRp. 20.000', textAlign: TextAlign.center),
+                          title:
+                              Text('Beef Burger', textAlign: TextAlign.center),
+                          subtitle: Text('Mcdi\n\nRp. 20.000',
+                              textAlign: TextAlign.center),
                         ),
                       ],
                     ),
@@ -202,8 +217,10 @@ class HomePage extends StatelessWidget {
                       children: [
                         Image.asset('images/pizz.png'),
                         ListTile(
-                          title: Text('Pizza Fruit', textAlign: TextAlign.center),
-                          subtitle: Text('Pija hut\n\nRp. 40.000', textAlign: TextAlign.center),
+                          title:
+                              Text('Pizza Fruit', textAlign: TextAlign.center),
+                          subtitle: Text('Pija hut\n\nRp. 40.000',
+                              textAlign: TextAlign.center),
                         ),
                       ],
                     ),
@@ -215,6 +232,30 @@ class HomePage extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+          if (index == 0) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomePage()),
+            );
+          }
+          else if (index == 1) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => FavoritosPage()),
+            );
+          }
+          else if (index == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => CartPage()),
+            );
+          }
+        },
+        currentIndex: _currentIndex,
         type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
