@@ -46,9 +46,14 @@ class _DetalhesFoodState extends State<DetalhesFood> {
               children: <Widget>[
                 Center(
                   child: Container(
-                      margin: EdgeInsets.only(top: 90),
-                      width: 250,
-                      height: 250,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('images/bg6.png'),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      width: double.infinity,
+                      height: 400,
                       child: Image.network(
                         widget.dados['image'],
                       )),
@@ -62,11 +67,12 @@ class _DetalhesFoodState extends State<DetalhesFood> {
                         widget.dados['name'],
                         style: TextStyle(
                           fontSize: 20,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
                         'idr' + widget.dados['price'].toString(),
-                        style: TextStyle(fontSize: 20),
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
@@ -112,7 +118,7 @@ class _DetalhesFoodState extends State<DetalhesFood> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'Descrição',
-                        style: TextStyle(fontSize: 20),
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                       )),
                 ),
                 SizedBox(height: 10),
@@ -128,7 +134,7 @@ class _DetalhesFoodState extends State<DetalhesFood> {
                         ),
                       )),
                 ),
-                SizedBox(height: 100),
+                SizedBox(height: 50),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

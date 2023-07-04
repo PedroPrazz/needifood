@@ -291,28 +291,28 @@ void _performSearch(String searchText) {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-          if (index == 0) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => HomePage()),
-            );
-          } else if (index == 1) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => FavoritosPage()),
-            );
-          } else if (index == 2) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => CartPage(cartItems: cartItems,)),
-            );
-          }
-        },
-        currentIndex: _currentIndex,
+        // onTap: (index) {
+        //   setState(() {
+        //     _currentIndex = index;
+        //   });
+        //   if (index == 0) {
+        //     Navigator.push(
+        //       context,
+        //       MaterialPageRoute(builder: (context) => HomePage()),
+        //     );
+        //   } else if (index == 1) {
+        //     Navigator.push(
+        //       context,
+        //       MaterialPageRoute(builder: (context) => FavoritosPage()),
+        //     );
+        //   } else if (index == 2) {
+        //     Navigator.push(
+        //       context,
+        //       MaterialPageRoute(builder: (context) => CartPage(cartItems: cartItems,)),
+        //     );
+        //   }
+        // },
+        // currentIndex: _currentIndex,
         type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
