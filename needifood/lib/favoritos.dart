@@ -15,11 +15,10 @@ class FavoritosPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Image.network(dados['image']),
-            Text('Item Favorito:', style: TextStyle(fontSize: 24)),
-            // Text(dados['name'], style: TextStyle(fontSize: 20)),
-            // Text('Preço: \$${dados['price']}', style: TextStyle(fontSize: 20)),
-            // Text('Descrição: ${dados['description']}', style: TextStyle(fontSize: 20)),
+            Image.network(dados['image']),
+            Text(dados['name'], style: TextStyle(fontSize: 20)),
+            Text('Preço: \$${dados['price']}', style: TextStyle(fontSize: 20)),
+            Text('Descrição: ${dados['description']}', style: TextStyle(fontSize: 20)),
           ],
         ),
       ),

@@ -13,6 +13,10 @@ class _ListBurgersState extends State<ListBurgers> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Burgers'),
+        centerTitle: true,
+      ),
       body: Container(
         child: ListView.builder(
         itemCount: Foods[0]['Hambúrgueres'].length, 

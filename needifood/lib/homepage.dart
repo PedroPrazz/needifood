@@ -15,6 +15,29 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
+  TextEditingController _searchController = TextEditingController();
+  List cartItems = [];
+
+void _performSearch(String searchText) {
+  String lowercaseSearch = searchText.toLowerCase();
+
+    if (lowercaseSearch == 'burgers' || lowercaseSearch == 'burger' || lowercaseSearch == 'hamburguer') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ListBurgers()),
+      );
+    } else if (lowercaseSearch == 'drinks' || lowercaseSearch == 'drink' || lowercaseSearch == 'refri' || lowercaseSearch == 'refrigerante') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ListDrinks()),
+      );
+    } else if (lowercaseSearch == 'pizzas' || lowercaseSearch == 'pizza') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ListPizzas()),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +47,8 @@ class _HomePageState extends State<HomePage> {
           Card(
             margin: EdgeInsets.only(top: 20, left: 10, right: 10),
             child: TextField(
+              controller: _searchController,
+              onSubmitted: _performSearch,
               textAlign: TextAlign.right,
               decoration: InputDecoration(
                 hintText: "Pesquisar alimento",
@@ -36,7 +61,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          SizedBox(height: 25),
+          SizedBox(height: 20),
           GestureDetector(
             onTap: () {
               Navigator.push(
@@ -45,12 +70,12 @@ class _HomePageState extends State<HomePage> {
               );
             },
             child: Container(
-              width: 550,
-              height: 180,
+              width: 500,
+              height: 170,
               child: Image.asset('images/banner1.png'),
             ),
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 10),
           Container(
               margin: EdgeInsets.only(left: 10),
               child: Align(
@@ -213,15 +238,56 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Container(
-            width: 300,
-            height: 150,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              margin: EdgeInsets.only(left: 10),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Recomendados',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              )),
+          Container(
+            width: double.infinity,
+            height: 164,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
               children: [
-                Image.asset('images/bg2.png'),
+                Container(
+                  width: 210,
+                  height: 130,
+                  margin: EdgeInsets.all(10),
+                    child: Column(
+                      children: [
+                        Image.asset('images/bg2.png'),
+                      ],
+                  ),
+                ),
+                Container(
+                  width: 210,
+                  height: 130,
+                  margin: EdgeInsets.all(10),
+                    child: Column(
+                      children: [
+                        Image.asset('images/bg2.png'),
+                      ],
+                  ),
+                ),
+                Container(
+                  width: 210,
+                  height: 130,
+                  margin: EdgeInsets.all(10),
+                    child: Column(
+                      children: [
+                        Image.asset('images/bg2.png'),
+                      ],
+                    ),
+                ),
               ],
             ),
-          )
+          ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -242,7 +308,7 @@ class _HomePageState extends State<HomePage> {
           } else if (index == 2) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => CartPage()),
+              MaterialPageRoute(builder: (context) => CartPage(cartItems: cartItems,)),
             );
           }
         },

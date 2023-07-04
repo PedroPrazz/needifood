@@ -1,42 +1,64 @@
 import 'package:flutter/material.dart';
 
-class CartPage extends StatelessWidget {
+class CartPage extends StatefulWidget {
+  final cartItems;
+
+  CartPage({required this.cartItems});
+
+  @override
+  _CartPageState createState() => _CartPageState();
+}
+
+class _CartPageState extends State<CartPage> {
+  double getTotalPrice() {
+    double total = 0;
+    for (var item in widget.cartItems) {
+      total += item['price'];
+    }
+    return total;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Carrinho'),
       ),
-      body: ListView.builder(
-        itemCount: 3, // Número de itens no carrinho
-        itemBuilder: (context, index) {
-          return ListTile(
-            leading: Icon(Icons.shopping_cart),
-            title: Text('Item ${index + 1}'),
-            subtitle: Text('Preço: \$9.99'), // Substitua pelo preço do item real
-          );
-        },
-      ),
-      bottomNavigationBar: Container(
-        padding: EdgeInsets.all(16),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Total: \$29.97', // Substitua pelo total real do carrinho
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                // Ação do botão "Finalizar Compra"
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: widget.cartItems.length,
+              itemBuilder: (context, index) {
+                var item = widget.cartItems[index];
+                return ListTile(
+                  leading: Image.network(
+                    item['image'],
+                    width: 50,
+                    height: 50,
+                  ),
+                  title: Text(item['name']),
+                  subtitle: Text('idr' + item['price'].toString()),
+                  trailing: IconButton(
+                    icon: Icon(Icons.delete),
+                    onPressed: () {
+                      setState(() {
+                        widget.cartItems.removeAt(index);
+                      });
+                    },
+                  ),
+                );
               },
-              child: Text('Finalizar Compra'),
             ),
-          ],
-        ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Text(
+              'Valor total: IDR ${getTotalPrice().toStringAsFixed(2)}',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'cart.dart';
 
 class DetalheBanner extends StatefulWidget {
   const DetalheBanner({super.key});
@@ -12,6 +11,10 @@ class _DetalheBannerState extends State<DetalheBanner> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Banner'),
+        centerTitle: true,
+      ),
       body: Column(
           children: [
             Column(
@@ -84,10 +87,6 @@ class _DetalheBannerState extends State<DetalheBanner> {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => CartPage()),
-                        );
                       },
                       child: Row(
                         children: [

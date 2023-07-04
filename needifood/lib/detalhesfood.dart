@@ -14,20 +14,29 @@ class DetalhesFood extends StatefulWidget {
 
 class _DetalhesFoodState extends State<DetalhesFood> {
   bool isFavorito = false;
+  List cartItems = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          title: Text(widget.dados['name']),
           actions: [
             IconButton(
                 onPressed: () {
                   setState(() {
                     isFavorito = !isFavorito;
                   });
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => FavoritosPage(dados: widget.dados)));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              FavoritosPage(dados: widget.dados)));
                 },
                 icon: Icon(
-                  isFavorito ? Icons.favorite : Icons.favorite_border, color: isFavorito ? Colors.red : null,))
+                  isFavorito ? Icons.favorite : Icons.favorite_border,
+                  color: isFavorito ? Colors.red : null,
+                ))
           ],
         ),
         body: Column(
@@ -49,8 +58,16 @@ class _DetalhesFoodState extends State<DetalhesFood> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Beef Burger'),
-                      Text('idr20K'),
+                      Text(
+                        widget.dados['name'],
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
+                      ),
+                      Text(
+                        'idr' + widget.dados['price'].toString(),
+                        style: TextStyle(fontSize: 20),
+                      ),
                     ],
                   ),
                 ),
@@ -60,8 +77,14 @@ class _DetalhesFoodState extends State<DetalhesFood> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Icon(Icons.location_on),
-                      Text('Mcdi'),
+                      Icon(
+                        Icons.location_on,
+                        color: Colors.blue,
+                      ),
+                      Text(
+                        'Mcdi',
+                        style: TextStyle(fontSize: 17),
+                      ),
                     ],
                   ),
                 ),
@@ -71,40 +94,56 @@ class _DetalhesFoodState extends State<DetalhesFood> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Icon(Icons.star),
-                      Text('4,7'),
+                      Icon(
+                        Icons.star,
+                        color: Colors.blue,
+                      ),
+                      Text(
+                        '4,7',
+                        style: TextStyle(fontSize: 17),
+                      ),
                     ],
                   ),
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 20),
                 Container(
-                  margin: EdgeInsets.only(left: 20, right: 10),
-                  child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text('Descrição')),
-                ),
-                SizedBox(height: 10),
-                Container(
-                  width: 300,
                   margin: EdgeInsets.only(left: 20, right: 10),
                   child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        'Cheese burger dengan daging dan keju mozarella, hanya burger saja tidak dapat bungkus BTS.jika ingin menambah minum atau menu lain jangan lupa konfirmasi terlebih dahulu',
+                        'Descrição',
+                        style: TextStyle(fontSize: 20),
+                      )),
+                ),
+                SizedBox(height: 10),
+                Container(
+                  width: 500,
+                  margin: EdgeInsets.only(left: 20, right: 10),
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        widget.dados['description'],
                         style: TextStyle(
                           fontSize: 20,
                         ),
                       )),
                 ),
-                SizedBox(height: 120),
+                SizedBox(height: 100),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ElevatedButton(
                       onPressed: () {
+                        setState(() {
+                          cartItems.add(widget.dados);
+                        });
+
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => CartPage()),
+                          MaterialPageRoute(
+                              builder: (context) => CartPage(
+                                    cartItems: cartItems,
+                                  )),
                         );
                       },
                       child: Row(
